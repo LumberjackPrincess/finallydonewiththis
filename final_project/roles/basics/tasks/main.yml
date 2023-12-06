@@ -1,0 +1,16 @@
+---
+- set_fact: role_name=main
+- import_tasks: 
+  - configure_security_windows.yml
+  - install_software_windows.yml
+  - enable_bitlocker.yml
+  - system_monitoring_windows.yml
+  - windows_updates_reboot.yml
+  when: ansible_facts['os_family'] == "Windows"
+- import_tasks: 
+  - install_email_server_linux.yml
+  - configure_nginx.yml
+  - configure_firewall_linux.yml
+  - configure_freeradius.yml
+  become: true
+  when: ansible_distribution == "Rocky"

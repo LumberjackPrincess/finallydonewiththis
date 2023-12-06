@@ -1,0 +1,7 @@
+---
+- name: final project playbook
+  hosts: all
+  #become: true
+  ignore_errors: true
+  roles:
+    - basics
